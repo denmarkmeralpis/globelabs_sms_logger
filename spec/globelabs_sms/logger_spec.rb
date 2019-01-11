@@ -1,0 +1,51 @@
+require_relative '../spec_helper'
+require 'webmock/rspec'
+require 'base64'
+
+RSpec.describe GlobelabsSms::Logger do
+  let(:content) { 'Hello World' }
+  let(:address) { '9177710296' }
+  let(:logger) { GlobelabsSms::Logger.new }
+  let(:host) { ENV['DASH_HOST'] + '/api/v1/messages' }
+  let(:headers) do
+    { 'Authorization': 'Basic ' + Base64.encode64(
+      ENV['DASH_APP_IDENTIFIER'] + ':' + ENV['DASH_API_TOKEN']
+    ).chomp }
+  end
+
+  before do
+    GlobelabsSmsLogger.configure do |config|
+      config.host = ENV['DASH_HOST']
+      config.api_token = ENV['DASH_API_TOKEN']
+      config.app_identifier = ENV['DASH_APP_IDENTIFIER']
+    end
+  end
+
+  describe '#send' do
+    let(:response) { logger.send(address: address, content: content) }
+
+    context 'with correct data' do
+      it 'returns 200' do
+        stub_request(:post, host)
+          .to_return(body: response_body('success.json'),
+                     status: 200, headers: headers)
+        expect(response).to have_key(:code)
+        expect(response).to have_key(:body)
+        expect(response[:code]).to eq('200')
+      end
+    end
+
+    context 'with unauthorized data' do
+      it 'returns 401' do
+        stub_request(:post, host).to_return(status: 401)
+        expect(response).to have_key(:code)
+        expect(response).to have_key(:body)
+        expect(response[:code]).to eq('401')
+      end
+    end
+  end
+
+  def response_body(filename)
+    File.read(File.expand_path('../../fixtures/' + filename, __FILE__))
+  end
+end
