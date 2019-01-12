@@ -27,7 +27,7 @@ Or install it yourself as:
 
 Then generate initializer:
 
-    $ rails g globelabs_sms_logger::install initializer
+    $ rails g globelabs_sms_logger:install initializer
 
 then edit the file `config/initializers/globelabs_sms_logger.rb`
 
