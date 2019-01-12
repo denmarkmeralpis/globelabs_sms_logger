@@ -43,6 +43,32 @@ RSpec.describe GlobelabsSms::Logger do
         expect(response[:code]).to eq('401')
       end
     end
+
+    context 'Overriding of values' do
+      let(:logger) do
+        GlobelabsSms::Logger.new(
+          address: 'XXXXXXXXXXX',
+          content: 'XXXXX',
+          group: 'groupX')
+      end
+
+      it 'returns init values' do
+        expect(logger.address).to eq('XXXXXXXXXXX')
+        expect(logger.content).to eq('XXXXX')
+        expect(logger.group).to eq('groupX')
+      end
+
+      it 'overrides values thru #send options' do
+        stub_request(:post, host)
+            .to_return(body: response_body('success.json'),
+                      status: 200, headers: headers)
+        logger.send(address: 'YYYYYYYYYY', content: 'YYYY', group: 'groupY')
+
+        expect(logger.address).to eq('YYYYYYYYYY')
+        expect(logger.content).to eq('YYYY')
+        expect(logger.group).to eq('groupY')
+      end
+    end
   end
 
   def response_body(filename)
