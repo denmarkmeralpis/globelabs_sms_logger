@@ -1,4 +1,7 @@
-# GlobelabsSmsLogger
+[![Build Status](https://travis-ci.org/denmarkmeralpis/globelabs_sms_logger.svg?branch=master)](https://travis-ci.org/denmarkmeralpis/globelabs_sms_logger)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/26978dbc15878f486bd6/test_coverage)](https://codeclimate.com/github/denmarkmeralpis/globelabs_sms_logger/test_coverage)
+[![Maintainability](https://api.codeclimate.com/v1/badges/26978dbc15878f486bd6/maintainability)](https://codeclimate.com/github/denmarkmeralpis/globelabs_sms_logger/maintainability)
+# Globe Labs Sms Logger
 
 It's a simple logger which consumes the Globelabs SMS Dashboard API(See Globelabs SMS Dasbhoard).
 
