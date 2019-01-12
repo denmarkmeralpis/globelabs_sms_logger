@@ -1,20 +1,22 @@
 require 'generator_spec'
 require_relative '../spec_helper'
 
-RSpec.describe GlobelabsSmsLogger::Generators::InstallGenerator, type: :generator do
-   destination File.expand_path('../tmp', __dir__)
-   arguments %w(install)
+RSpec.describe GlobelabsSmsLogger::Generators::InstallGenerator,
+               type: :generator do
 
-   before(:all) do
-      prepare_destination
-      run_generator
-   end
+  destination File.expand_path('../tmp', __dir__)
+  arguments %w[install]
 
-   after(:all) do
-      system 'rm -rf spec/tmp'
-   end
+  before(:all) do
+    prepare_destination
+    run_generator
+  end
 
-   context 'creates globelabs_sms_logger.rb initializer' do
-      it { assert_file 'config/initializers/globelabs_sms_logger.rb' }
-   end
+  after(:all) do
+    system 'rm -rf spec/tmp'
+  end
+
+  context 'creates globelabs_sms_logger.rb initializer' do
+    it { assert_file 'config/initializers/globelabs_sms_logger.rb' }
+  end
 end

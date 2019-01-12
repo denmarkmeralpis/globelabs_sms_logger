@@ -29,6 +29,7 @@ class GlobelabsSms
     def perform_sending
       uri = URI(host + ENDPOINT)
       req = Net::HTTP::Post.new(uri.path)
+      req['Gem-Version'] = GlobelabsSmsLogger::VERSION
       req.basic_auth(identifier, api_token)
       req.set_form_data(content: content, address: address)
       res = Net::HTTP.start(uri.host, uri.port,

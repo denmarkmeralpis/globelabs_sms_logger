@@ -18,6 +18,9 @@ RSpec.describe GlobelabsSmsLogger::Configuration do
     it 'returns correct host' do
       expect(GlobelabsSmsLogger.configuration.host)
         .to eq(ENV['DASH_HOST'])
+
+      expect(GlobelabsSmsLogger.configuration.host)
+        .not_to eq('https://smsdash.nueca.net')
     end
 
     it 'returns correct identifier' do
@@ -34,9 +37,9 @@ RSpec.describe GlobelabsSmsLogger::Configuration do
         .to raise_error(GlobelabsSmsLogger::Error)
     end
 
-    it 'raises error for host' do
-      expect { GlobelabsSmsLogger.configuration.host }
-        .to raise_error(GlobelabsSmsLogger::Error)
+    it 'returns default host' do
+      expect(GlobelabsSmsLogger.configuration.host)
+        .to eq('https://smsdash.nueca.net')
     end
 
     it 'raises error for app_identifier' do
@@ -52,8 +55,8 @@ RSpec.describe GlobelabsSmsLogger::Configuration do
         .to raise_error(GlobelabsSmsLogger::Error)
       expect { GlobelabsSmsLogger.configuration.app_identifier }
         .to raise_error(GlobelabsSmsLogger::Error)
-      expect { GlobelabsSmsLogger.configuration.host }
-        .to raise_error(GlobelabsSmsLogger::Error)
+      expect(GlobelabsSmsLogger.configuration.host)
+        .to eq('https://smsdash.nueca.net')
     end
   end
 end

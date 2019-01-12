@@ -31,13 +31,7 @@ module GlobelabsSmsLogger
     end
 
     def host
-      unless @host
-        raise GlobelabsSmsLogger::Error,
-              'Globelabs SMS Dashboard host is missing!
-                See documentation for configuration settings.'
-      end
-
-      @host
+      @host || 'https://smsdash.nueca.net'
     end
   end
  end
