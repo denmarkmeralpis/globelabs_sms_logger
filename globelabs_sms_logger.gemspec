@@ -13,7 +13,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = 'https://github.com/denmarkmeralpis/globelabs_sms_logger'
 
   if spec.respond_to?(:metadata)
-    spec.metadata['allowed_push_host'] = 'https://rubygems.org/gems/globelabs_sms_logger'
+    spec.metadata['allowed_push_host'] = 'https://rubygems.org'
 
     spec.metadata['homepage_uri'] = spec.homepage
     spec.metadata['source_code_uri'] = 'https://github.com/denmarkmeralpis/globelabs_sms_logger'
