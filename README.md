@@ -43,7 +43,7 @@ logger.send(address: '917XXXXXXX', content: 'Cheers!')
 
 # You can also speicfy the api_token & app_identifier as args
 # Example:
-logger = GlobelabsSms::Logger.new(api_token: 'zxvcjeyxi1j1smplsmple', identifier: 'TST')
+logger = GlobelabsSms::Logger.new(api_token: ENV['API_TOKEN']', identifier: ENV['IDENTIFIER'])
 logger.send(address: '917XXXXXXX', content: 'Hello!')
 ```
 
